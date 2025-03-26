@@ -1,54 +1,46 @@
-# React + TypeScript + Vite
+# Timezone Clock App
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+## Описание проекта
 
-Currently, two official plugins are available:
+Проект представляет собой веб-приложение для отображения часов в различных часовых поясах. Пользователь может выбрать от 1 до 10 часов и установить для каждого из них отдельный часовой пояс.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## Основные функции:
 
-## Expanding the ESLint configuration
+1. Часы отображают локальное время с учетом выбранного пользователем часового пояса.
+2. Возможность выбора количества отображаемых часов (от 1 до 10).
+3. Часовые пояса загружаются из файла `timezones.json` через сетевой запрос.
+4. До загрузки данных отображается индикатор загрузки.
+5. Для выбора часового пояса используется выпадающий список, в котором исключены уже выбранные города.
+6. Отображаемые стрелочные часы содержат три стрелки: часовую, минутную и секундную.
+7. Часовая стрелка в два раза короче минутной, циферблат имеет часовые отметки.
+8. Используется React + Redux для управления состоянием.
+9. В качестве сборщика используется Vite, который использует Esbuild для разработки и Rollup для продакшена.
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+## Выбор технологий
 
-```js
-export default tseslint.config({
-  extends: [
-    // Remove ...tseslint.configs.recommended and replace with this
-    ...tseslint.configs.recommendedTypeChecked,
-    // Alternatively, use this for stricter rules
-    ...tseslint.configs.strictTypeChecked,
-    // Optionally, add this for stylistic rules
-    ...tseslint.configs.stylisticTypeChecked,
-  ],
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ['./tsconfig.node.json', './tsconfig.app.json'],
-      tsconfigRootDir: import.meta.dirname,
-    },
-  },
-})
+-   **React** – удобный и мощный инструмент для построения компонентного UI.
+-   **Redux** – используется для централизованного хранения и управления состоянием (выбранные часовые пояса, список доступных часовых поясов).
+-   **TypeScript** – добавляет строгую типизацию, что повышает надежность кода.
+-   **shadcn/ui** – для стилизации интерфейса и удобного управления компонентами.
+-   **SVG** – используется для отрисовки стрелочных часов, поскольку позволяет легко манипулировать элементами и анимировать их.
+-   **Vite + Rollup** – выбраны вместо Webpack, так как обеспечивают более быструю сборку, лучшую производительность в режиме разработки благодаря Esbuild и оптимизированную сборку в продакшене с Rollup.
+
+## Запуск проекта
+
+### Установка зависимостей:
+
+```bash
+yarn
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+### Запуск в режиме разработки:
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+```bash
+yarn dev
+```
 
-export default tseslint.config({
-  plugins: {
-    // Add the react-x and react-dom plugins
-    'react-x': reactX,
-    'react-dom': reactDom,
-  },
-  rules: {
-    // other rules...
-    // Enable its recommended typescript rules
-    ...reactX.configs['recommended-typescript'].rules,
-    ...reactDom.configs.recommended.rules,
-  },
-})
+### Сборка для продакшена:
+
+```bash
+yarn build
 ```
